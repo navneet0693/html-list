@@ -89,7 +89,28 @@ $list = [
  * @return void
  */
 function print_iterative($list) {
-  // Code.
+$arr = new \ArrayIterator($list);
+  while ($arr->valid())
+  {
+    if(is_array($arr->current()))
+    {
+      print_iterative($arr->current());
+    }
+    else
+    {
+      switch ($arr->current()) {
+        case 'ol':
+          echo "<ol>";
+          break;
+        case 'ul':
+          echo "<ul>";
+        break;
+        default:
+          echo $arr->current();
+      }
+    }
+    $arr->next();
+  }
 }
 
 // Print list.
